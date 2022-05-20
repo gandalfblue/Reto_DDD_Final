@@ -31,9 +31,9 @@ public class ClienteOcasional extends AggregateEvent<ClienteOcasionalId> {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public ClienteOcasional(ClienteOcasionalId entityId, TipoDeCliente tipoDeCliente,
+    public ClienteOcasional(ClienteOcasionalId clienteOcasionalId, TipoDeCliente tipoDeCliente,
                             NombreCompleto nombreCompleto) {
-        super(entityId);
+        super(clienteOcasionalId);
         this.tipoDeCliente = tipoDeCliente;
         this.nombreCompleto = nombreCompleto;
     }

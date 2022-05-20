@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.cliente;
+package co.com.bodytech.entrenamiento.cliente.events;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;

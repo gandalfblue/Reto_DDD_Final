@@ -18,8 +18,8 @@ public class Telefono implements ValueObject<String> {
             throw new IllegalArgumentException("El telefono no puede estar en blanco");
         }
 
-        if (this.telefono.length() > 20){
-            throw new IllegalArgumentException("El telefono no permite mas de 20 caracteres");
+        if (this.telefono.length() > 10){
+            throw new IllegalArgumentException("El telefono no permite mas de 10 caracteres");
         }
     }
 

@@ -22,8 +22,8 @@ public class ClienteVIP extends AggregateEvent<ClienteVIPId> {
     protected HorasSemanalesDeEntrenamiento horasSemanalesDeEntrenamiento;
     protected CuponDeDescuento cuponDeDescuento;
 
-    public ClienteVIP(ClienteVIPId entityId) {
-        super(entityId);
+    public ClienteVIP(ClienteVIPId clienteVIPId) {
+        super(clienteVIPId);
     }
 
     public ClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono, Email email, NombreCompleto nombreCompleto,

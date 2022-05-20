@@ -18,11 +18,11 @@ public class NombreCompleto implements ValueObject<String> {
         this.nombreCompleto = Objects.requireNonNull(nombreCompleto);
 
         if (this.nombreCompleto.isBlank()){
-            throw new IllegalArgumentException("El nombre no puede estar en blanco");
+            throw new IllegalArgumentException("El nombre no puede estar vacia");
         }
 
-        if (this.nombreCompleto.length() > 100){
-            throw new IllegalArgumentException("El nombre no permite mas de 100 caracteres");
+        if (this.nombreCompleto.length() > 50){
+            throw new IllegalArgumentException("El nombre no permite mas de 50 caracteres");
         }
     }
 

@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.entrenador;
+package co.com.bodytech.entrenamiento.entrenador.values;
 
 import co.com.sofka.domain.generic.Identity;
 

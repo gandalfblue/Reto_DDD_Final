@@ -1,7 +1,7 @@
 package co.com.bodytech.entrenamiento.cliente.events;
 
-import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
+import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -12,7 +12,7 @@ public class ClienteOcasionalActualizado extends DomainEvent {
     private final Email email;
     private final NombreCompleto nombreCompleto;
     public ClienteOcasionalActualizado(ClienteOcasionalId clienteOcasionalId, Telefono telefono, Email email, NombreCompleto nombreCompleto) {
-        super("co.com.bodytech.entrenamiento.ClienteOcasionalActualizado");
+        super("co.com.bodytech.entrenamiento.cliente.ClienteOcasionalActualizado");
         this.clienteOcasionalId = clienteOcasionalId;
         this.telefono = telefono;
         this.email = email;

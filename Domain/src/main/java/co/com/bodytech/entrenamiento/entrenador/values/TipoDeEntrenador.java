@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.entrenador;
+package co.com.bodytech.entrenamiento.entrenador.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
@@ -14,6 +14,10 @@ public class TipoDeEntrenador implements ValueObject<TipoDeEntrenador.Tipo> {
 
     public enum Tipo {
         Entrenador_Personalizado, Entrenador_Zona, Entrenador_General
+    }
+
+    public static TipoDeEntrenador of(Tipo tipoEntrenador) {
+        return new TipoDeEntrenador(tipoEntrenador);
     }
 
     @Override
