@@ -1,21 +1,22 @@
-package co.com.bodytech.entrenamiento.cliente.events;
+package co.com.bodytech.entrenamiento.cliente.commands;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
+import co.com.sofka.domain.generic.Command;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class ClienteFrecuenteActualizado extends DomainEvent {
+public class ActualizarClienteFrecuente extends Command {
 
     private final ClienteFrecuenteId clienteFrecuenteId;
     private final Telefono telefono;
     private final Email email;
     private NombreCompleto nombreCompleto;
 
-    public ClienteFrecuenteActualizado(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,
-                                            Email email, NombreCompleto nombreCompleto) {
-        super("co.com.bodytech.entrenamiento.cliente.ClienteFrecuenteActualizado");
+    public ActualizarClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,
+                                      Email email, NombreCompleto nombreCompleto) {
+
         this.clienteFrecuenteId = clienteFrecuenteId;
         this.telefono = telefono;
         this.email = email;

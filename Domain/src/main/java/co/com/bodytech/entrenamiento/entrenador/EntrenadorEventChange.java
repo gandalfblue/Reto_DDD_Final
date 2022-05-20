@@ -1,7 +1,10 @@
 package co.com.bodytech.entrenamiento.entrenador;
 
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaActualizado;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;

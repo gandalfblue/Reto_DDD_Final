@@ -1,27 +1,30 @@
-package co.com.bodytech.entrenamiento.cliente.events;
+package co.com.bodytech.entrenamiento.centroacondicionamiento.events;
 
-import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class ClienteVIPActualizado extends DomainEvent {
+public class AprendizActualizado extends DomainEvent {
 
-    private final ClienteVIPId clienteVIPId;
+    private final AprendizId aprendizId;
     private final Telefono telefono;
     private final Email email;
     private final NombreCompleto nombreCompleto;
-    public ClienteVIPActualizado(ClienteVIPId clienteVIPId, Telefono telefono, Email email, NombreCompleto nombreCompleto) {
-        super("co.com.bodytech.entrenamiento.cliente.ClienteVIPCreado");
-        this.clienteVIPId = clienteVIPId;
+    public AprendizActualizado(AprendizId aprendizId, Telefono telefono,
+                               Email email, NombreCompleto nombreCompleto) {
+
+        super("co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizActualizado");
+
+        this.aprendizId = aprendizId;
         this.telefono = telefono;
         this.email = email;
         this.nombreCompleto = nombreCompleto;
     }
 
-    public ClienteVIPId getClienteVIPId() {
-        return clienteVIPId;
+    public AprendizId getAprendizId() {
+        return aprendizId;
     }
 
     public Telefono getTelefono() {

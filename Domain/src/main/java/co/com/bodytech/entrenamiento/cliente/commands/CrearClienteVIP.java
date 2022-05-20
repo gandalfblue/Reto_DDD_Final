@@ -1,17 +1,18 @@
-package co.com.bodytech.entrenamiento.cliente.events;
+package co.com.bodytech.entrenamiento.cliente.commands;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
+import co.com.sofka.domain.generic.Command;
 import co.com.sofka.domain.generic.DomainEvent;
 
-public class ClienteVIPCreado extends DomainEvent {
+public class CrearClienteVIP extends Command {
 
     private final NombreCompleto nombreCompleto;
     private final ClienteVIPId clienteVIPId;
 
 
-    public ClienteVIPCreado(NombreCompleto nombreCompleto, ClienteVIPId clienteVIPId) {
-        super("co.com.bodytech.entrenamiento.cliente.ClienteVIPCreado");
+    public CrearClienteVIP(NombreCompleto nombreCompleto, ClienteVIPId clienteVIPId) {
+
         this.nombreCompleto = nombreCompleto;
         this.clienteVIPId = clienteVIPId;
     }

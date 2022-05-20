@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.entrenador;
+package co.com.bodytech.entrenamiento.entrenador.events;
 
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
@@ -15,7 +15,7 @@ public class EntrenadorZonaCreado extends DomainEvent {
     public EntrenadorZonaCreado(EntrenadorId EntrenadorId, EntrenadorZonaId entrenadorZonaId,
                                 NombreCompleto nombreCompleto) {
 
-        super("co.com.bodytech.entrenamiento.entrenador.EntrenadorZonaCreado");
+        super("co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado");
 
         this.EntrenadorId = EntrenadorId;
         this.entrenadorZonaId = entrenadorZonaId;

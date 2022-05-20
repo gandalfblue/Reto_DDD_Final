@@ -4,9 +4,9 @@ import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteCreado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalCreado;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalEliminado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPCreado;
-import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPEliminado;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
@@ -74,8 +74,8 @@ public class Cliente extends AggregateEvent<ClienteId> {
         appendChange(new ClienteVIPActualizado(clienteVIPId, telefono, email, nombreCompleto)).apply();
     }
 
-    public void eliminarClienteVIP(){
-        appendChange(new ClienteVIPEliminado()).apply();
+    public void eliminarClienteOcasional(){
+        appendChange(new ClienteOcasionalEliminado()).apply();
     }
 
     public void actualizarClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,

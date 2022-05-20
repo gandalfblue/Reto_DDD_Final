@@ -48,22 +48,6 @@ public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
     public void actualizarClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,
                                            Email email, NombreCompleto nombreCompleto){
 
-        if (nombreCompleto.value().isBlank()){
-            throw new IllegalArgumentException("El nombre no puede estar en blanco");
-        }
-
-        if (String.valueOf(telefono.value()).isBlank()){
-            throw new IllegalArgumentException("El telefono no puede estar vacio");
-        }
-
-        if (email.value().isBlank()){
-            throw new IllegalArgumentException("El email no puede estar vacio");
-        }
-
-        if (clienteFrecuenteId.value().isBlank()){
-            throw new IllegalArgumentException("El id del cliente frecuente no puede estar vacio");
-        }
-
         this.clienteFrecuenteId = ClienteFrecuenteId.of(clienteFrecuenteId.value());
         this.email = Email.of(email.value());
         this.nombreCompleto = NombreCompleto.of(nombreCompleto.value());
