@@ -6,7 +6,27 @@ import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class ClienteFrecuenteCreado extends DomainEvent {
-    public ClienteFrecuenteCreado(NombreCompleto nombreCompleto, TipoDeCliente tipoDeCliente, ClienteFrecuenteId clienteFrecuenteId) {
-        super();
+
+    private final ClienteFrecuenteId clienteFrecuenteId;
+    private final NombreCompleto nombreCompleto;
+    private final TipoDeCliente tipoDeCliente;
+
+    public ClienteFrecuenteCreado(ClienteFrecuenteId clienteFrecuenteId, NombreCompleto nombreCompleto, TipoDeCliente tipoDeCliente) {
+        super("co.com.bodytech.entrenamiento.ClienteFrecuenteCreado");
+        this.clienteFrecuenteId = clienteFrecuenteId;
+        this.nombreCompleto = nombreCompleto;
+        this.tipoDeCliente = tipoDeCliente;
+    }
+
+    public ClienteFrecuenteId getClienteFrecuenteId() {
+        return clienteFrecuenteId;
+    }
+
+    public NombreCompleto getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public TipoDeCliente getTipoDeCliente() {
+        return tipoDeCliente;
     }
 }

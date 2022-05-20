@@ -26,6 +26,10 @@ public class NombreCompleto implements ValueObject<String> {
         }
     }
 
+    public static NombreCompleto of(String nombreCompleto) {
+        return new NombreCompleto(nombreCompleto);
+    }
+
     @Override
     public String value() {
         return nombreCompleto;

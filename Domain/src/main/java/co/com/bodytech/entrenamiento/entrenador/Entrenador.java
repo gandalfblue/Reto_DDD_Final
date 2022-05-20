@@ -1,6 +1,6 @@
 package co.com.bodytech.entrenamiento.entrenador;
 
-import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
+import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -14,6 +14,7 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
     protected EntrenadorPersonalizadoId entrenadorPersonalizadoId;
     protected TipoDeEntrenador tipoDeEntrenador;
     protected NombreCompleto nombreCompleto;
+    protected ClienteId clienteId;
 
 
     public Entrenador(EntrenadorId EntrenadorId) {
@@ -53,5 +54,4 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
         events.forEach(entrenador::applyEvent);
         return entrenador;
     }
-
 }

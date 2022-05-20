@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.cliente.values;
 
+import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
@@ -22,6 +23,10 @@ public class HorasSemanalesDeEntrenamiento implements ValueObject<Integer> {
         if (!this.horasSemanales.equals(this.horasSemanales.intValue())){
             throw new IllegalArgumentException("La cantidad de horas semanales no puede tener decimales");
         }
+    }
+
+    public static HorasSemanalesDeEntrenamiento of(Integer horasSemanales) {
+        return new HorasSemanalesDeEntrenamiento(horasSemanales);
     }
 
     @Override

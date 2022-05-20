@@ -1,7 +1,9 @@
 package co.com.bodytech.entrenamiento.cliente;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
+import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.cliente.values.HorasSemanalesDeEntrenamiento;
+import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -13,6 +15,7 @@ public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
 
     protected ClienteFrecuenteId clienteFrecuenteId;
     protected Telefono telefono;
+    protected TipoDeCliente tipoDeCliente;
     protected Email email;
     protected NombreCompleto nombreCompleto;
 
@@ -31,6 +34,15 @@ public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
         this.email = email;
         this.nombreCompleto = nombreCompleto;
         this.horasSemanalesDeEntrenamiento = horasSemanalesDeEntrenamiento;
+    }
+
+    public ClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, TipoDeCliente tipoDeCliente,
+                                NombreCompleto nombreCompleto) {
+
+        super(clienteFrecuenteId);
+        this.tipoDeCliente = tipoDeCliente;
+        this.nombreCompleto = nombreCompleto;
+
     }
 
     public void actualizarClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,
@@ -52,9 +64,9 @@ public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
             throw new IllegalArgumentException("El id del cliente frecuente no puede estar vacio");
         }
 
-        this.clienteFrecuenteId = clienteFrecuenteId;
-        this.email = email;
-        this.nombreCompleto = nombreCompleto;
-        this.telefono = telefono;
+        this.clienteFrecuenteId = ClienteFrecuenteId.of(clienteFrecuenteId.value());
+        this.email = Email.of(email.value());
+        this.nombreCompleto = NombreCompleto.of(nombreCompleto.value());
+        this.telefono = Telefono.of(telefono.value());
     }
 }

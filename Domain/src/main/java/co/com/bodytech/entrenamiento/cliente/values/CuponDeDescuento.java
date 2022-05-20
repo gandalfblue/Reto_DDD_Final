@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.cliente.values;
 
+import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
@@ -22,6 +23,10 @@ public class CuponDeDescuento implements ValueObject<Integer> {
         if (!this.cuponDescuento.equals(this.cuponDescuento.intValue())){
             throw new IllegalArgumentException("El cupon de descuento no puede tener decimales");
         }
+    }
+
+    public static CuponDeDescuento of(Integer cuponDescuento) {
+        return new CuponDeDescuento(cuponDescuento);
     }
 
     @Override

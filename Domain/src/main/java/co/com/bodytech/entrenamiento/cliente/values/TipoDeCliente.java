@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.cliente.values;
 
+import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
@@ -19,6 +20,10 @@ public class TipoDeCliente implements ValueObject<TipoDeCliente.Tipo> {
 
     public enum Tipo {
         Cliente_Ocasional, Cliente_Frecuente, ClienteVIP
+    }
+
+    public static TipoDeCliente of(Tipo tipoCliente) {
+        return new TipoDeCliente(tipoCliente);
     }
 
     @Override

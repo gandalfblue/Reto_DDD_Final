@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.cliente;
+package co.com.bodytech.entrenamiento.cliente.values;
 
 import co.com.sofka.domain.generic.ValueObject;
 
@@ -19,6 +19,10 @@ public class Email implements ValueObject<String> {
         if (this.email.length() > 50){
             throw new IllegalArgumentException("El email no permite mas de 50 caracteres");
         }
+    }
+
+    public static Email of(String email) {
+        return new Email(email);
     }
 
     @Override

@@ -1,23 +1,75 @@
 package co.com.bodytech.entrenamiento.cliente;
 
-import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteCreado;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalActualizado;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalCreado;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPActualizado;
+import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPCreado;
+import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.sofka.domain.generic.EventChange;
 
 public class ClienteEventChange extends EventChange {
     public ClienteEventChange(Cliente cliente) {
 
+        apply((ClienteFrecuenteCreado evento) ->{
+            cliente.tipoDeCliente = evento.getTipoDeCliente();
+            cliente.nombreCompleto = evento.getNombreCompleto();
+            cliente.clienteFrecuente = new ClienteFrecuente(evento.getClienteFrecuenteId(),
+                    evento.getTipoDeCliente(), evento.getNombreCompleto());
+        });
+
+        apply((ClienteOcasionalCreado evento) ->{
+            cliente.tipoDeCliente = evento.getTipoDeCliente();
+            cliente.nombreCompleto = evento.getNombreCompleto();
+            cliente.clienteOcasional = new ClienteOcasional(evento.getClienteOcasionalId(),
+                    evento.getTipoDeCliente(), evento.getNombreCompleto());
+        });
+
+        apply((ClienteVIPCreado evento) ->{
+            cliente.tipoDeCliente = evento.getTipoDeCliente();
+            cliente.nombreCompleto = evento.getNombreCompleto();
+            cliente.clienteVIP = new ClienteVIP(evento.getClienteVIPId(),
+                    evento.getTipoDeCliente(), evento.getNombreCompleto());
+        });
 
 
-        apply((ClienteVIPActualizado events)->{
+        apply((ClienteOcasionalActualizado evento)->{
 
-            var clienteVIPId = events.getClienteVIPId();
-            var telefono = events.getTelefono();
-            var nombreCompleto = events.getNombreCompleto();
+            var clienteOcasionalId = evento.getClienteOcasionalId();
+            var telefono = evento.getTelefono();
+            var nombreCompleto = evento.getNombreCompleto();
+            var email = evento.getEmail();
 
-            cliente.clienteVIP.
+            cliente.clienteOcasional.actualizarClienteOcasional(clienteOcasionalId, telefono,
+                    email, nombreCompleto);
+        });
 
+        apply((ClienteVIPActualizado evento)->{
 
+            var clienteVIPId = evento.getClienteVIPId();
+            var telefono = evento.getTelefono();
+            var nombreCompleto = evento.getNombreCompleto();
+            var email = evento.getEmail();
+
+            cliente.clienteVIP.actualizarClienteClienteVIP(clienteVIPId, telefono, email, nombreCompleto);
+        });
+
+        apply((ClienteVIPEliminado evento) ->{
+
+            cliente.clienteVIP = null;
+
+        });
+
+        apply((ClienteFrecuenteActualizado evento)->{
+
+            var clienteFrecuenteId = evento.getClienteFrecuenteId();
+            var telefono = evento.getTelefono();
+            var nombreCompleto = evento.getNombreCompleto();
+            var email = evento.getEmail();
+
+            cliente.clienteFrecuente.actualizarClienteFrecuente(clienteFrecuenteId, telefono,
+                                    email, nombreCompleto);
         });
     }
 }

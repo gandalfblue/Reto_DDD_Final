@@ -1,5 +1,6 @@
-package co.com.bodytech.entrenamiento.cliente;
+package co.com.bodytech.entrenamiento.cliente.events;
 
+import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
