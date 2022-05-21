@@ -1,30 +1,23 @@
 package co.com.bodytech.entrenamiento.entrenadorusecase;
 
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
-import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
-import co.com.sofka.domain.generic.Command;
+import co.com.bodytech.entrenamiento.entrenador.Entrenador;
+import co.com.bodytech.entrenamiento.entrenador.commands.CrearEntrenadorZona;
+import co.com.sofka.business.generic.UseCase;
+import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.business.support.ResponseEvents;
 
-public class CrearEntrenadorZonaUseCase extends Command {
-
-    private final EntrenadorId EntrenadorId;
-    private final EntrenadorZonaId entrenadorZonaId;
-    private final NombreCompleto nombreCompleto;
+public class CrearEntrenadorZonaUseCase extends UseCase<RequestCommand<CrearEntrenadorZona>,
+        ResponseEvents> {
 
 
-    public CrearEntrenadorZonaUseCase(EntrenadorId EntrenadorId, EntrenadorZonaId entrenadorZonaId,
-                                      NombreCompleto nombreCompleto) {
+    @Override
+    public void executeUseCase(RequestCommand<CrearEntrenadorZona> crearEntrenadorZonaRequestCommand) {
 
-        this.EntrenadorId = EntrenadorId;
-        this.entrenadorZonaId = entrenadorZonaId;
-        this.nombreCompleto = nombreCompleto;
-    }
+        var command =crearEntrenadorZonaRequestCommand.getCommand();
 
-    public EntrenadorZonaId getEntrenadorZonaId() {
-        return entrenadorZonaId;
-    }
+        var entrenador = new Entrenador(command.getCentroAcondicionamientoId(),
+                command.getEntrenadorId(), command.getEntrenadorZonaId(), command.getNombreCompleto());
 
-    public NombreCompleto getNombreCompleto() {
-        return nombreCompleto;
+        emit().onResponse(new ResponseEvents(entrenador.getUncommittedChanges()));
     }
 }

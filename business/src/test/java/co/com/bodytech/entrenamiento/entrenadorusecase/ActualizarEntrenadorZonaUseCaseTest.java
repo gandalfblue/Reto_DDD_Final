@@ -2,12 +2,11 @@ package co.com.bodytech.entrenamiento.entrenadorusecase;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
-import co.com.bodytech.entrenamiento.entrenador.commands.ActualizarEntrenadorPersonalizado;
-import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
-import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
-import co.com.bodytech.entrenamiento.entrenador.values.CantidadDeClientes;
+import co.com.bodytech.entrenamiento.entrenador.commands.ActualizarEntrenadorZona;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorPersonalizadoId;
+import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.business.generic.UseCaseHandler;
@@ -26,27 +25,25 @@ import java.util.List;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class ActualizarEntrenadorPersonalizadoUseCaseTest {
-
+class ActualizarEntrenadorZonaUseCaseTest {
 
     @InjectMocks
-    private ActualizarEntrenadorPersonalizadoUseCase useCase;
+    private ActualizarEntrenadorZonaUseCase useCase;
 
     @Mock
     private DomainEventRepository repository;
 
     @Test
-    void actualizarEntrenadorPersonalizadoHappyPass(){
+    void actualizarEntrenadorZonaHappyPass(){
 
         //arrange
         var entrenadorId = EntrenadorId.of("10");
-        var cantidadDeClientes = CantidadDeClientes.of(10);
-        var entrenadorPersonalizadoId = EntrenadorPersonalizadoId.of("E12");
+        var entrenadorZonaId = EntrenadorZonaId.of("E12");
         var telefono = Telefono.of("123456789");
         var email = Email.of("julian@sofkau.comco");
         var nombreCompleto = NombreCompleto.of("Julian");
-        var command = new ActualizarEntrenadorPersonalizado(entrenadorId, entrenadorPersonalizadoId,
-                                                         cantidadDeClientes, telefono, email, nombreCompleto);
+        var command = new ActualizarEntrenadorZona(entrenadorId, entrenadorZonaId,
+                telefono, email, nombreCompleto);
 
         when(repository.getEventsBy("10")).thenReturn(history());
         useCase.addRepository(repository);
@@ -60,31 +57,26 @@ class ActualizarEntrenadorPersonalizadoUseCaseTest {
                 .getDomainEvents();
 
         //assert
-        var entrenadorPersonalizadoActualizado = (EntrenadorPersonalizadoActualizado)eventos.get(0);
-        Assertions.assertEquals("10", entrenadorPersonalizadoActualizado.aggregateRootId());
-        Assertions.assertEquals("Julian", entrenadorPersonalizadoActualizado.
-                                                                        getNombreCompleto().value());
-        Assertions.assertEquals("E12", entrenadorPersonalizadoActualizado.
-                                                             getEntrenadorPersonalizadoId().value());
-        Assertions.assertEquals(10, entrenadorPersonalizadoActualizado.
-                                                                     getCantidadDeClientes().value());
+        var entrenadorZonaActualizado = (EntrenadorZonaActualizado)eventos.get(0);
+        Assertions.assertEquals("10", entrenadorZonaActualizado.aggregateRootId());
+        Assertions.assertEquals("Julian", entrenadorZonaActualizado.
+                getNombreCompleto().value());
+        Assertions.assertEquals("E12", entrenadorZonaActualizado.getEntrenadorZonaId().value());
     }
 
     private List<DomainEvent> history() {
 
         var centroAcondicionamientoId = CentroAcondicionamientoId.of("1");
         var entrenadorId = EntrenadorId.of("10");
-        var cantidadDeClientes = CantidadDeClientes.of(10);
-        var entrenadorPersonalizadoId = EntrenadorPersonalizadoId.of("E12");
+        var entrenadorZonaId = EntrenadorZonaId.of("E12");
         var nombreCompleto = NombreCompleto.of("Andres");
-        var evento = new EntrenadorPersonalizadoCreado(
+        var evento = new EntrenadorZonaCreado(
                 centroAcondicionamientoId,
                 entrenadorId,
-                entrenadorPersonalizadoId,
+                entrenadorZonaId,
                 nombreCompleto
         );
         evento.setAggregateRootId("Root");
         return List.of(evento);
     }
-
 }

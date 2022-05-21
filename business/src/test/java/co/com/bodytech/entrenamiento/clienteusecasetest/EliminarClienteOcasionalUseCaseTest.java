@@ -43,7 +43,6 @@ class EliminarClienteOcasionalUseCaseTest {
         //asserts
         var clienteOcasionalEliminado = (ClienteOcasionalEliminado)eventos.get(0);
         Assertions.assertEquals("12", clienteOcasionalEliminado.aggregateRootId());
-
     }
 
     /*private List<DomainEvent> history() {

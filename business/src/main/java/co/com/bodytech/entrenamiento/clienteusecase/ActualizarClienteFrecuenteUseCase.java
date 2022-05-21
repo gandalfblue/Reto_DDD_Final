@@ -6,7 +6,8 @@ import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 
-public class ActualizarClienteFrecuenteUseCase extends UseCase<RequestCommand<ActualizarClienteFrecuente>, ResponseEvents> {
+public class ActualizarClienteFrecuenteUseCase extends UseCase<RequestCommand<ActualizarClienteFrecuente>,
+        ResponseEvents> {
 
 
     @Override

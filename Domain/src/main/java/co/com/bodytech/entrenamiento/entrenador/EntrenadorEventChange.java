@@ -8,6 +8,7 @@ import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
+import co.com.bodytech.entrenamiento.entrenador.values.ZonaDeTrabajo;
 import co.com.sofka.domain.generic.EventChange;
 
 public class EntrenadorEventChange extends EventChange {
@@ -34,7 +35,6 @@ public class EntrenadorEventChange extends EventChange {
                     new TipoDeEntrenador(TipoDeEntrenador.Tipo.Entrenador_Personalizado),
                     evento.getNombreCompleto());
         });
-
 
         apply((EntrenadorGeneralActualizado evento)->{
 
@@ -68,13 +68,13 @@ public class EntrenadorEventChange extends EventChange {
         apply((EntrenadorZonaActualizado evento)->{
 
             var entrenadorZonaId = evento.getEntrenadorZonaId();
-            var zonaDeTrabajo = evento.getZonaDeTrabajo();
+
             var telefono = evento.getTelefono();
             var nombreCompleto = evento.getNombreCompleto();
             var email = evento.getEmail();
 
-            entrenador.entrenadorZona.actualizarEntrenadorZona(entrenadorZonaId, zonaDeTrabajo,
-                                        telefono, email, nombreCompleto);
+            entrenador.entrenadorZona.actualizarEntrenadorZona(entrenadorZonaId,
+                    new ZonaDeTrabajo(ZonaDeTrabajo.Zona.Zona_Cardio), telefono, email, nombreCompleto);
         });
     }
 }

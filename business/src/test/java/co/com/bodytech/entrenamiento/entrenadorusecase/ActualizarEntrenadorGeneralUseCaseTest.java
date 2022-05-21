@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.entrenadorusecase;
 
+import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.entrenador.commands.ActualizarEntrenadorGeneral;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualizado;
@@ -64,11 +65,12 @@ class ActualizarEntrenadorGeneralUseCaseTest {
 
     private List<DomainEvent> history() {
 
+        var centroAcondicionamientoId = CentroAcondicionamientoId.of("1");
         var entrenadorId = EntrenadorId.of("10");
         var entrenadorGeneralId = EntrenadorGeneralId.of("E12");
         var nombreCompleto = NombreCompleto.of("Andres");
         var evento = new EntrenadorGeneralCreado(
-                entrenadorId,
+                centroAcondicionamientoId, entrenadorId,
                 entrenadorGeneralId,
                 nombreCompleto
         );

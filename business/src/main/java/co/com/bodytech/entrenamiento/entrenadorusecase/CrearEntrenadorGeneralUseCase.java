@@ -1,34 +1,22 @@
 package co.com.bodytech.entrenamiento.entrenadorusecase;
 
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorGeneralId;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
-import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
-import co.com.sofka.domain.generic.Command;
+import co.com.bodytech.entrenamiento.entrenador.Entrenador;
+import co.com.bodytech.entrenamiento.entrenador.commands.CrearEntrenadorGeneral;
+import co.com.sofka.business.generic.UseCase;
+import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.business.support.ResponseEvents;
 
-public class CrearEntrenadorGeneralUseCase extends Command {
+public class CrearEntrenadorGeneralUseCase extends UseCase<RequestCommand<CrearEntrenadorGeneral>,
+        ResponseEvents> {
 
-    private final EntrenadorId EntrenadorId;
-    private final EntrenadorGeneralId entrenadorGeneralId;
-    private final NombreCompleto nombreCompleto;
+    @Override
+    public void executeUseCase(RequestCommand<CrearEntrenadorGeneral> crearEntrenadorGeneralRequestCommand) {
 
+        var command =crearEntrenadorGeneralRequestCommand.getCommand();
 
-    public CrearEntrenadorGeneralUseCase(EntrenadorId entrenadorId, EntrenadorGeneralId entrenadorGeneralId,
-                                         NombreCompleto nombreCompleto) {
+        var entrenador = new Entrenador(command.getCentroAcondicionamientoId(),
+            command.getEntrenadorId(), command.getEntrenadorGeneralId(), command.getNombreCompleto());
 
-        this.EntrenadorId = entrenadorId;
-        this.entrenadorGeneralId = entrenadorGeneralId;
-        this.nombreCompleto = nombreCompleto;
-    }
-
-    public co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId getEntrenadorId() {
-        return EntrenadorId;
-    }
-
-    public EntrenadorGeneralId getEntrenadorGeneralId() {
-        return entrenadorGeneralId;
-    }
-
-    public NombreCompleto getNombreCompleto() {
-        return nombreCompleto;
+        emit().onResponse(new ResponseEvents(entrenador.getUncommittedChanges()));
     }
 }

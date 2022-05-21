@@ -1,34 +1,23 @@
 package co.com.bodytech.entrenamiento.entrenadorusecase;
 
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorPersonalizadoId;
-import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
-import co.com.sofka.domain.generic.Command;
+import co.com.bodytech.entrenamiento.entrenador.Entrenador;
+import co.com.bodytech.entrenamiento.entrenador.commands.CrearEntrenadorPersonalizado;
+import co.com.sofka.business.generic.UseCase;
+import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.business.support.ResponseEvents;
 
-public class CrearEntrenadorPersonalizadoUseCase extends Command {
-
-    private final EntrenadorId EntrenadorId;
-    private final EntrenadorPersonalizadoId entrenadorPersonalizadolId;
-    private final NombreCompleto nombreCompleto;
+public class CrearEntrenadorPersonalizadoUseCase extends UseCase<RequestCommand<CrearEntrenadorPersonalizado>,
+        ResponseEvents> {
 
 
-    public CrearEntrenadorPersonalizadoUseCase(EntrenadorId entrenadorId,
-                                               EntrenadorPersonalizadoId entrenadorPersonalizadolId, NombreCompleto nombreCompleto) {
+    @Override
+    public void executeUseCase(RequestCommand<CrearEntrenadorPersonalizado> crearEntrenadorPersonalizadoRequestCommand) {
 
-        this.EntrenadorId = entrenadorId;
-        this.entrenadorPersonalizadolId = entrenadorPersonalizadolId;
-        this.nombreCompleto = nombreCompleto;
-    }
+        var command =crearEntrenadorPersonalizadoRequestCommand.getCommand();
 
-    public co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId getEntrenadorId() {
-        return EntrenadorId;
-    }
+        var entrenador = new Entrenador(command.getCentroAcondicionamientoId(),
+                command.getEntrenadorId(), command.getEntrenadorPersonalizadolId(), command.getNombreCompleto());
 
-    public EntrenadorPersonalizadoId getEntrenadorPersonalizadolId() {
-        return entrenadorPersonalizadolId;
-    }
-
-    public NombreCompleto getNombreCompleto() {
-        return nombreCompleto;
+        emit().onResponse(new ResponseEvents(entrenador.getUncommittedChanges()));
     }
 }

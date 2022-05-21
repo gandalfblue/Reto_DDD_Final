@@ -3,8 +3,11 @@ package co.com.bodytech.entrenamiento.entrenador;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.CantidadDeClientes;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorGeneralId;
@@ -12,7 +15,6 @@ import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorPersonalizadoId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
-import co.com.bodytech.entrenamiento.entrenador.values.ZonaDeTrabajo;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -39,28 +41,31 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
         subscribe(new EntrenadorEventChange(this));
     }
 
-    public Entrenador(EntrenadorId EntrenadorId, EntrenadorZonaId entrenadorZonaId,
-                                                            NombreCompleto nombreCompleto) {
+    public Entrenador(CentroAcondicionamientoId centroAcondicionamientoId, EntrenadorId entrenadorId,
+                      EntrenadorZonaId entrenadorZonaId, NombreCompleto nombreCompleto) {
 
-        super(EntrenadorId);
-        this.entrenadorZonaId = entrenadorZonaId;
-        this.nombreCompleto = nombreCompleto;
+        super(entrenadorId);
+        appendChange(new EntrenadorZonaCreado(centroAcondicionamientoId, entrenadorId,
+                                                    entrenadorZonaId, nombreCompleto)).apply();
+        subscribe(new EntrenadorEventChange(this));
     }
 
-    public Entrenador(EntrenadorId EntrenadorId, EntrenadorGeneralId entrenadorGeneralId,
-                                 NombreCompleto nombreCompleto) {
+    public Entrenador(CentroAcondicionamientoId centroAcondicionamientoId, EntrenadorId entrenadorId,
+                                EntrenadorGeneralId entrenadorGeneralId, NombreCompleto nombreCompleto) {
 
-        super(EntrenadorId);
-        this.entrenadorGeneralId = entrenadorGeneralId;
-        this.nombreCompleto = nombreCompleto;
+        super(entrenadorId);
+        appendChange(new EntrenadorGeneralCreado(centroAcondicionamientoId, entrenadorId,
+                                                entrenadorGeneralId, nombreCompleto)).apply();
+        subscribe(new EntrenadorEventChange(this));
     }
 
-    public Entrenador(EntrenadorId EntrenadorId, EntrenadorPersonalizadoId entrenadorPersonalizadoId,
-                                 NombreCompleto nombreCompleto) {
+    public Entrenador(CentroAcondicionamientoId centroAcondicionamientoId, EntrenadorId entrenadorId,
+                            EntrenadorPersonalizadoId entrenadorPersonalizadoId, NombreCompleto nombreCompleto) {
 
-        super(EntrenadorId);
-        this.entrenadorPersonalizadoId = entrenadorPersonalizadoId;
-        this.nombreCompleto = nombreCompleto;
+        super(entrenadorId);
+        appendChange(new EntrenadorPersonalizadoCreado(centroAcondicionamientoId, entrenadorId,
+                                                entrenadorPersonalizadoId, nombreCompleto)).apply();
+        subscribe(new EntrenadorEventChange(this));
     }
 
     public static Entrenador from(EntrenadorId entrenadorId, List<DomainEvent> events){
@@ -76,17 +81,16 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
     }
 
     public void actualizarEntrenadorPersonalizado(EntrenadorPersonalizadoId entrenadorPersonalizadoId,
-                                        CantidadDeClientes cantidadDeClientes, Telefono telefono,
-                                                  Email email, NombreCompleto nombreCompleto){
+                                                    CantidadDeClientes cantidadDeClientes, Telefono telefono,
+                                                    Email email, NombreCompleto nombreCompleto){
         appendChange(new EntrenadorPersonalizadoActualizado(entrenadorPersonalizadoId, cantidadDeClientes,
                 telefono, email, nombreCompleto)).apply();
     }
 
     public void actualizarEntrenadorZona(EntrenadorZonaId entrenadorZonaId,
-                                         ZonaDeTrabajo zonaDeTrabajo, Telefono telefono, Email email, NombreCompleto nombreCompleto){
+                                         Telefono telefono, Email email, NombreCompleto nombreCompleto){
 
-        appendChange(new EntrenadorZonaActualizado(entrenadorZonaId, zonaDeTrabajo, telefono,
-                                                    email, nombreCompleto)).apply();
+        appendChange(new EntrenadorZonaActualizado(entrenadorZonaId, telefono, email, nombreCompleto)).apply();
     }
 
     public void eliminarEntrenadorZona(){

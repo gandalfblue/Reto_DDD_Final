@@ -1,40 +1,31 @@
 package co.com.bodytech.entrenamiento.centroacondicionamientousecase;
 
+import co.com.bodytech.entrenamiento.centroacondicionamiento.CentroAcondicionamiento;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.commands.ActualizarAprendiz;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
+import co.com.bodytech.entrenamiento.cliente.Cliente;
+import co.com.bodytech.entrenamiento.cliente.commands.ActualizarClienteFrecuente;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
+import co.com.sofka.business.generic.UseCase;
+import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.business.support.ResponseEvents;
 import co.com.sofka.domain.generic.Command;
 
-public class ActualizarAprendizUseCase extends Command {
+public class ActualizarAprendizUseCase extends UseCase<RequestCommand<ActualizarAprendiz>, ResponseEvents> {
 
-    private final AprendizId aprendizId;
-    private final Telefono telefono;
-    private final Email email;
-    private final NombreCompleto nombreCompleto;
+    @Override
+    public void executeUseCase(RequestCommand<ActualizarAprendiz> actualizarAprendizRequestCommand) {
 
-    public ActualizarAprendizUseCase(AprendizId aprendizId, Telefono telefono,
-                                     Email email, NombreCompleto nombreCompleto) {
+        var command = actualizarAprendizRequestCommand.getCommand();
+        var centroAcondicionamiento = CentroAcondicionamiento.
+                from(command.getCentroAcondicionamientoId(),
+                repository().getEventsBy(command.getCentroAcondicionamientoId().value()));
 
-        this.aprendizId = aprendizId;
-        this.telefono = telefono;
-        this.email = email;
-        this.nombreCompleto = nombreCompleto;
-    }
+        centroAcondicionamiento.actualizarAprendiz(command.getAprendizId(),command.getTelefono(),
+                command.getEmail(),command.getNombreCompleto());
 
-    public AprendizId getAprendizId() {
-        return aprendizId;
-    }
-
-    public Telefono getTelefono() {
-        return telefono;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public NombreCompleto getNombreCompleto() {
-        return nombreCompleto;
+        emit().onResponse(new ResponseEvents(centroAcondicionamiento.getUncommittedChanges()));
     }
 }

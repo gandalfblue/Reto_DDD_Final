@@ -4,28 +4,24 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class ZonaDeTrabajo implements ValueObject<String> {
+public class ZonaDeTrabajo implements ValueObject<ZonaDeTrabajo.Zona> {
 
-    private final String zonaTrabajo;
+    private final Zona zonaTrabajo;
 
-    public ZonaDeTrabajo(String zonaTrabajo) {
+    public ZonaDeTrabajo(Zona zonaTrabajo) {
         this.zonaTrabajo = Objects.requireNonNull(zonaTrabajo);
-
-        if (this.zonaTrabajo.isBlank()){
-            throw new IllegalArgumentException("La zona de trabajo no puede estar vacia");
-        }
-
-        if (this.zonaTrabajo.length() > 50){
-            throw new IllegalArgumentException("La zona de trabajo no permite mas de 50 caracteres");
-        }
     }
 
-    public static ZonaDeTrabajo of(String zonaTrabajo) {
+    public enum Zona {
+        Zona_Cardio, Zona_Fuerza, Zona_Trabajo_Grupal
+    }
+
+    public static ZonaDeTrabajo of(Zona zonaTrabajo) {
         return new ZonaDeTrabajo(zonaTrabajo);
     }
 
     @Override
-    public String value() {
+    public ZonaDeTrabajo.Zona value() {
         return zonaTrabajo;
     }
 }

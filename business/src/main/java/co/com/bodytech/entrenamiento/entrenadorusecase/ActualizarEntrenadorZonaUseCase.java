@@ -6,7 +6,7 @@ import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 
-public class ActualizarEntrenadorZonaUseZona extends UseCase<RequestCommand<ActualizarEntrenadorZona>,
+public class ActualizarEntrenadorZonaUseCase extends UseCase<RequestCommand<ActualizarEntrenadorZona>,
                                                                                         ResponseEvents> {
 
     @Override
@@ -17,8 +17,7 @@ public class ActualizarEntrenadorZonaUseZona extends UseCase<RequestCommand<Actu
                 repository().getEventsBy(command.getEntrenadorId().value()));
 
         entrenador.actualizarEntrenadorZona(command.getEntrenadorZonaId(),
-                command.getZonaDeTrabajo(), command.getTelefono(),
-                command.getEmail(), command.getNombreCompleto());
+                command.getTelefono(), command.getEmail(), command.getNombreCompleto());
 
         emit().onResponse(new ResponseEvents(entrenador.getUncommittedChanges()));
     }
