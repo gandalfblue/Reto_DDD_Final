@@ -1,21 +1,24 @@
 package co.com.bodytech.entrenamiento.cliente.commands;
 
+import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domain.generic.DomainEvent;
 
 public class ActualizarClienteVIP extends Command {
 
+    private final ClienteId clienteId;
     private final ClienteVIPId clienteVIPId;
     private final Telefono telefono;
     private final Email email;
     private final NombreCompleto nombreCompleto;
 
-    public ActualizarClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono, Email email, NombreCompleto nombreCompleto) {
+    public ActualizarClienteVIP(ClienteId clienteId, ClienteVIPId clienteVIPId,
+                                Telefono telefono, Email email, NombreCompleto nombreCompleto) {
 
+        this.clienteId = clienteId;
         this.clienteVIPId = clienteVIPId;
         this.telefono = telefono;
         this.email = email;
@@ -36,5 +39,9 @@ public class ActualizarClienteVIP extends Command {
 
     public NombreCompleto getNombreCompleto() {
         return nombreCompleto;
+    }
+
+    public ClienteId getClienteId() {
+        return clienteId;
     }
 }

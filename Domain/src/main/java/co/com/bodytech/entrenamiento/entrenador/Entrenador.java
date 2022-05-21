@@ -1,14 +1,15 @@
 package co.com.bodytech.entrenamiento.entrenador;
 
+import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.CantidadDeClientes;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorGeneralId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorPersonalizadoId;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaActualizado;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
 import co.com.bodytech.entrenamiento.entrenador.values.ZonaDeTrabajo;
@@ -21,13 +22,16 @@ import java.util.List;
 
 public class Entrenador extends AggregateEvent<EntrenadorId> {
 
+    protected CentroAcondicionamientoId centroAcondicionamientoId;
     protected EntrenadorZonaId entrenadorZonaId;
     protected EntrenadorZona entrenadorZona;
     protected EntrenadorGeneralId entrenadorGeneralId;
     protected EntrenadorGeneral entrenadorGeneral;
     protected EntrenadorPersonalizadoId entrenadorPersonalizadoId;
     protected EntrenadorPersonalizado entrenadorPersonalizado;
+
     protected TipoDeEntrenador tipoDeEntrenador;
+
     protected NombreCompleto nombreCompleto;
 
     public Entrenador(EntrenadorId EntrenadorId) {
@@ -36,7 +40,7 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
     }
 
     public Entrenador(EntrenadorId EntrenadorId, EntrenadorZonaId entrenadorZonaId,
-                            NombreCompleto nombreCompleto) {
+                                                            NombreCompleto nombreCompleto) {
 
         super(EntrenadorId);
         this.entrenadorZonaId = entrenadorZonaId;
@@ -71,9 +75,10 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
                 telefono, email, nombreCompleto)).apply();
     }
 
-    public void actualizarEntrenadorPersonalizado(EntrenadorPersonalizadoId EntrenadorPersonalizadoId,
-                                                  CantidadDeClientes cantidadDeClientes, Telefono telefono, Email email, NombreCompleto nombreCompleto){
-        appendChange(new EntrenadorPersonalizadoActualizado(EntrenadorPersonalizadoId, cantidadDeClientes,
+    public void actualizarEntrenadorPersonalizado(EntrenadorPersonalizadoId entrenadorPersonalizadoId,
+                                        CantidadDeClientes cantidadDeClientes, Telefono telefono,
+                                                  Email email, NombreCompleto nombreCompleto){
+        appendChange(new EntrenadorPersonalizadoActualizado(entrenadorPersonalizadoId, cantidadDeClientes,
                 telefono, email, nombreCompleto)).apply();
     }
 

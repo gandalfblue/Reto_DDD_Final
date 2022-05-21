@@ -21,8 +21,10 @@ public class ClienteEventChange extends EventChange {
 
         apply((ClienteOcasionalCreado evento) ->{
             cliente.nombreCompleto = evento.getNombreCompleto();
-            cliente.clienteOcasional = new ClienteOcasional(evento.getClienteOcasionalId(),
-                    new TipoDeCliente(TipoDeCliente.Tipo.Cliente_Ocasional), evento.getNombreCompleto());
+            cliente.centroAcondicionamientoId = evento.getCentroAcondicionamientoId();
+            cliente.clienteOcasional = new ClienteOcasional(evento.getCentroAcondicionamientoId(),
+                    evento.getClienteOcasionalId(), new TipoDeCliente(TipoDeCliente.Tipo.Cliente_Ocasional),
+                                                    evento.getNombreCompleto());
         });
 
         apply((ClienteVIPCreado evento) ->{

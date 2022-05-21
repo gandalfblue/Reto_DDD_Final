@@ -4,7 +4,6 @@ import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.domain.generic.DomainEvent;
 
 public class CrearEntrenadorZona extends Command {
 

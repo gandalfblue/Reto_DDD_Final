@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.cliente;
 
+import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteCreado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalActualizado;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class Cliente extends AggregateEvent<ClienteId> {
 
+    protected CentroAcondicionamientoId centroAcondicionamientoId;
     protected ClienteOcasional clienteOcasional;
     protected ClienteOcasionalId clienteOcasionalId;
     protected ClienteFrecuente clienteFrecuente;
@@ -39,26 +41,27 @@ public class Cliente extends AggregateEvent<ClienteId> {
         subscribe(new ClienteEventChange(this));
     }
 
-    public Cliente(ClienteId clienteId, ClienteOcasionalId clienteOcasionalId,
-                            NombreCompleto nombreCompleto) {
+    public Cliente(CentroAcondicionamientoId centroAcondicionamientoId, ClienteId clienteId,
+                                        ClienteOcasionalId clienteOcasionalId, NombreCompleto nombreCompleto) {
 
         super(clienteId);
-        appendChange(new ClienteOcasionalCreado(clienteOcasionalId, nombreCompleto)).apply();
+        appendChange(new ClienteOcasionalCreado(centroAcondicionamientoId, clienteOcasionalId, nombreCompleto)).apply();
         subscribe(new ClienteEventChange(this));
     }
 
-    public Cliente(ClienteId clienteId, ClienteFrecuenteId clienteFrecuenteId,
-                                NombreCompleto nombreCompleto) {
+    public Cliente(CentroAcondicionamientoId centroAcondicionamientoId, ClienteId clienteId,
+                                    ClienteFrecuenteId clienteFrecuenteId, NombreCompleto nombreCompleto) {
 
         super(clienteId);
-        appendChange(new ClienteFrecuenteCreado(clienteFrecuenteId, nombreCompleto)).apply();
+        appendChange(new ClienteFrecuenteCreado(centroAcondicionamientoId, clienteFrecuenteId, nombreCompleto)).apply();
         subscribe(new ClienteEventChange(this));
     }
 
-    public Cliente(ClienteId clienteId, ClienteVIPId clienteVIPId, NombreCompleto nombreCompleto) {
+    public Cliente(CentroAcondicionamientoId centroAcondicionamientoId, ClienteId clienteId,
+                                            ClienteVIPId clienteVIPId, NombreCompleto nombreCompleto) {
 
         super(clienteId);
-        appendChange(new ClienteVIPCreado(nombreCompleto, clienteVIPId)).apply();
+        appendChange(new ClienteVIPCreado(centroAcondicionamientoId, nombreCompleto, clienteVIPId)).apply();
         subscribe(new ClienteEventChange(this));
     }
 
@@ -74,8 +77,8 @@ public class Cliente extends AggregateEvent<ClienteId> {
         appendChange(new ClienteVIPActualizado(clienteVIPId, telefono, email, nombreCompleto)).apply();
     }
 
-    public void eliminarClienteOcasional(){
-        appendChange(new ClienteOcasionalEliminado()).apply();
+    public void eliminarClienteOcasional(ClienteId clienteId){
+        appendChange(new ClienteOcasionalEliminado(clienteId)).apply();
     }
 
     public void actualizarClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,

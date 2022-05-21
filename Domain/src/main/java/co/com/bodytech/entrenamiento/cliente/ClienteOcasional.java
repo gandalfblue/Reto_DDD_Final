@@ -1,5 +1,6 @@
 package co.com.bodytech.entrenamiento.cliente;
 
+import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
@@ -14,6 +15,7 @@ public class ClienteOcasional extends AggregateEvent<ClienteOcasionalId> {
 
    protected TipoDeCliente tipoDeCliente;
     protected ClienteOcasionalId clienteOcasionalId;
+    protected CentroAcondicionamientoId centroAcondicionamientoId;
     protected Telefono telefono;
     protected Email email;
     protected NombreCompleto nombreCompleto;
@@ -31,11 +33,12 @@ public class ClienteOcasional extends AggregateEvent<ClienteOcasionalId> {
         this.nombreCompleto = nombreCompleto;
     }
 
-    public ClienteOcasional(ClienteOcasionalId clienteOcasionalId, TipoDeCliente tipoDeCliente,
-                            NombreCompleto nombreCompleto) {
+    public ClienteOcasional(CentroAcondicionamientoId centroAcondicionamientoId,
+            ClienteOcasionalId clienteOcasionalId, TipoDeCliente tipoDeCliente, NombreCompleto nombreCompleto) {
         super(clienteOcasionalId);
         this.tipoDeCliente = tipoDeCliente;
         this.nombreCompleto = nombreCompleto;
+        this.centroAcondicionamientoId = centroAcondicionamientoId;
     }
 
     public void actualizarClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,

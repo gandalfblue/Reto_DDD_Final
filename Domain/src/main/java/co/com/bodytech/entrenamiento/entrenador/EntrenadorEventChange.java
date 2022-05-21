@@ -4,9 +4,9 @@ import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualiz
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaActualizado;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
 import co.com.sofka.domain.generic.EventChange;
 

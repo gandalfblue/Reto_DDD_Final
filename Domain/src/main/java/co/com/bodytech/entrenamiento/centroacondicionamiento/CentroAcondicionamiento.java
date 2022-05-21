@@ -10,10 +10,8 @@ import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondi
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.MaquinaId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.ZonaId;
 import co.com.bodytech.entrenamiento.cliente.Cliente;
-import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
 import co.com.bodytech.entrenamiento.entrenador.Entrenador;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -24,10 +22,6 @@ import java.util.List;
 public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamientoId> {
 
     protected CentroAcondicionamientoId centroAcondicionamientoId;
-    protected ClienteId clienteId;
-    protected Cliente cliente;
-    protected EntrenadorId entrenadorId;
-    protected Entrenador entrenador;
     protected Zona zona;
     protected ZonaId zonaId;
     protected Maquina maquina;
@@ -44,8 +38,7 @@ public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamie
            Cliente cliente, Entrenador entrenador, Zona zona, Maquina maquina, Aprendiz aprendiz) {
 
         super(centroAcondicionamientoId);
-        appendChange(new CentroAcondicionamientoCreado(cliente,
-                clienteId, entrenador, entrenadorId, zona, zonaId, maquina, maquinaId, aprendiz, aprendizId)).apply();
+        appendChange(new CentroAcondicionamientoCreado(zona, zonaId, maquina, maquinaId, aprendiz, aprendizId)).apply();
         subscribe(new CentroAcondicionamientoChange(this));
     }
 
@@ -81,35 +74,27 @@ public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamie
         return centroAcondicionamientoId;
     }
 
-    public ClienteId clienteId() {
-        return clienteId;
-    }
-
-    public EntrenadorId entrenadorId() {
-        return entrenadorId;
-    }
-
-    public Zona zona() {
+    public Zona getZona() {
         return zona;
     }
 
-    public ZonaId zonaId() {
+    public ZonaId getZonaId() {
         return zonaId;
     }
 
-    public Maquina maquina() {
+    public Maquina getMaquina() {
         return maquina;
     }
 
-    public MaquinaId maquinaId() {
+    public MaquinaId getMaquinaId() {
         return maquinaId;
     }
 
-    public AprendizId aprendizId() {
+    public AprendizId getAprendizId() {
         return aprendizId;
     }
 
-    public Aprendiz aprendiz() {
+    public Aprendiz getAprendiz() {
         return aprendiz;
     }
 }

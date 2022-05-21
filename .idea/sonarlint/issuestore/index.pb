@@ -2,8 +2,6 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-@
-business/pom.xml,d\4\d4ebdfff43bfaf86e620b416afb4835b5f67b594
 >
 Domain/pom.xml,7\b\7b5618abb8c700551796d73e955c31021b47e2f0
 7
@@ -18,8 +16,6 @@ LDomain/src/main/java/co/com/bodytech/entrenamiento/cliente/values/Email.java,f
 \Domain/src/main/java/co/com/bodytech/entrenamiento/entrenador/values/CantidadDeClientes.java,9\b\9b5ec8870ec71f37b377daca7aff61f4ae132344
 á
 WDomain/src/main/java/co/com/bodytech/entrenamiento/cliente/values/CuponDeDescuento.java,8\d\8dcf8de3c67f4bfe8018f371cfea4b866327e1ef
-}
-MDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/Entrenador.java,7\a\7abcaa5dd77277fa00034fdcd8e4ef4845fac371
 Ñ
 TDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/EntrenadorGeneral.java,9\c\9caee368dd641f6ff03a0c27577dabfea016024a
 ñ
@@ -38,8 +34,6 @@ lDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/events/Entrenador
 `Domain/src/main/java/co/com/bodytech/entrenamiento/entrenador/EntrenadorPersonalizadoCreado.java,3\e\3e9cb2b9eea4a95f969885e8002457da1c3ecf3e
 ì
 cDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/values/EntrenadorPersonalizadoId.java,8\7\87842f780d3b69555fc24a6dfe9c6f31200052ff
-Å
-QDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/EntrenadorZona.java,7\7\7712a2da180627cebb31abd988dd4d8ca40d5398
 ì
 cDomain/src/main/java/co/com/bodytech/entrenamiento/entrenador/values/EntrenadorZonaActualizado.java,b\f\bf54da39d2f769b3cac0093d2bf18ffc9342cba9
 ë
