@@ -7,6 +7,10 @@ public class CentroAcondicionamientoId extends Identity {
     public CentroAcondicionamientoId(String id){
         super(id);
     }
+
+    public CentroAcondicionamientoId() {
+    }
+
     public static CentroAcondicionamientoId of(String id) {
         return new CentroAcondicionamientoId(id);
     }

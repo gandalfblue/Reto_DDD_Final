@@ -1,23 +1,25 @@
 package co.com.bodytech.entrenamiento.centroacondicionamientousecase;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.CentroAcondicionamiento;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.commands.ActualizarAprendiz;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.commands.CrearAprendiz;
 import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.RequestCommand;
 import co.com.sofka.business.support.ResponseEvents;
 
-public class ActualizarAprendizUseCase extends UseCase<RequestCommand<ActualizarAprendiz>, ResponseEvents> {
+public class CrearAprendizUseCase extends UseCase<RequestCommand<CrearAprendiz>,
+        ResponseEvents> {
 
     @Override
-    public void executeUseCase(RequestCommand<ActualizarAprendiz> actualizarAprendizRequestCommand) {
+    public void executeUseCase(RequestCommand<CrearAprendiz> crearAprendizRequestCommand) {
 
-        var command = actualizarAprendizRequestCommand.getCommand();
+        var command =crearAprendizRequestCommand.getCommand();
+
         var centroAcondicionamiento = CentroAcondicionamiento.
                 from(command.getCentroAcondicionamientoId(),
                 repository().getEventsBy(command.getCentroAcondicionamientoId().value()));
 
-        centroAcondicionamiento.actualizarAprendiz(command.getAprendizId(),command.getTelefono(),
-                command.getEmail(),command.getNombreCompleto());
+        centroAcondicionamiento.crearAprendiz(command.getCentroAcondicionamientoId(),
+                command.getTelefono(), command.getNombreCompleto());
 
         emit().onResponse(new ResponseEvents(centroAcondicionamiento.getUncommittedChanges()));
     }

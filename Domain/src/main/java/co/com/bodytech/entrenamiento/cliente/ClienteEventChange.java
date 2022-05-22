@@ -7,6 +7,7 @@ import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalCreado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalEliminado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPCreado;
+import co.com.bodytech.entrenamiento.cliente.events.MembresiaClienteOcasionalActualizado;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.sofka.domain.generic.EventChange;
 
@@ -42,6 +43,16 @@ public class ClienteEventChange extends EventChange {
             var email = evento.getEmail();
 
             cliente.clienteOcasional.actualizarClienteOcasional(clienteOcasionalId, telefono,
+                    email, nombreCompleto);
+        });
+
+        apply((MembresiaClienteOcasionalActualizado evento)->{
+
+            var clienteFrecuenteId = evento.getClienteFrecuenteId();
+            var telefono = evento.getTelefono();
+            var nombreCompleto = evento.getNombreCompleto();
+            var email = evento.getEmail();
+            cliente.clienteFrecuente = new ClienteFrecuente(clienteFrecuenteId, telefono,
                     email, nombreCompleto);
         });
 

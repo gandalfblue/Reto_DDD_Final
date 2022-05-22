@@ -8,6 +8,7 @@ import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalCreado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteOcasionalEliminado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteVIPCreado;
+import co.com.bodytech.entrenamiento.cliente.events.MembresiaClienteOcasionalActualizado;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
@@ -26,6 +27,7 @@ import java.util.List;
  */
 public class Cliente extends AggregateEvent<ClienteId> {
 
+    protected ClienteId clienteId;
     protected CentroAcondicionamientoId centroAcondicionamientoId;
     protected ClienteOcasional clienteOcasional;
     protected ClienteOcasionalId clienteOcasionalId;
@@ -77,8 +79,8 @@ public class Cliente extends AggregateEvent<ClienteId> {
         appendChange(new ClienteVIPActualizado(clienteVIPId, telefono, email, nombreCompleto)).apply();
     }
 
-    public void eliminarClienteOcasional(ClienteId clienteId){
-        appendChange(new ClienteOcasionalEliminado(clienteId)).apply();
+    public void eliminarClienteOcasional(ClienteOcasionalId clienteOcasionalId){
+        appendChange(new ClienteOcasionalEliminado(clienteOcasionalId, clienteId)).apply();
     }
 
     public void actualizarClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,
@@ -88,10 +90,19 @@ public class Cliente extends AggregateEvent<ClienteId> {
                 nombreCompleto)).apply();
     }
 
+    public void actualizarMembresiaClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,
+                                           Email email, NombreCompleto nombreCompleto){
+
+        var clienteFrecuenteId = new ClienteFrecuenteId();
+
+        appendChange(new MembresiaClienteOcasionalActualizado(clienteId, clienteOcasionalId, clienteFrecuenteId,
+                telefono, email, nombreCompleto)).apply();
+    }
+
     public void actualizarClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,
                                            Email email, NombreCompleto nombreCompleto){
 
-        appendChange(new ClienteFrecuenteActualizado(clienteFrecuenteId, telefono, email,
+        appendChange(new ClienteFrecuenteActualizado(clienteFrecuenteId, clienteOcasionalId, telefono, email,
                 nombreCompleto)).apply();
     }
 

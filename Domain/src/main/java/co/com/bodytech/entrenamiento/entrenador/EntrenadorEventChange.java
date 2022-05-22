@@ -5,6 +5,7 @@ import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCambiadoAGeneral;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
@@ -34,6 +35,17 @@ public class EntrenadorEventChange extends EventChange {
                     new EntrenadorPersonalizado( evento.getEntrenadorPersonalizadolId(),
                     new TipoDeEntrenador(TipoDeEntrenador.Tipo.Entrenador_Personalizado),
                     evento.getNombreCompleto());
+        });
+
+        apply((EntrenadorZonaCambiadoAGeneral evento)->{
+
+            var entrenadorGeneralId = evento.getEntrenadorGeneralId();
+            var telefono = evento.getTelefono();
+            var nombreCompleto = evento.getNombreCompleto();
+            var email = evento.getEmail();
+
+            entrenador.entrenadorGeneral = new EntrenadorGeneral(entrenadorGeneralId,
+                    telefono,email,nombreCompleto);
         });
 
         apply((EntrenadorGeneralActualizado evento)->{

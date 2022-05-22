@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.entrenadorusecase;
+package co.com.bodytech.entrenamiento.entrenadorusecasetest;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
@@ -7,6 +7,7 @@ import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualiz
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorGeneralId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
+import co.com.bodytech.entrenamiento.entrenadorusecase.ActualizarEntrenadorGeneralUseCase;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.business.generic.UseCaseHandler;

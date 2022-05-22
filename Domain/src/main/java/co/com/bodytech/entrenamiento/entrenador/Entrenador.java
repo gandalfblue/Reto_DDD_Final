@@ -7,6 +7,7 @@ import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaActualizado;
+import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCambiadoAGeneral;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaEliminado;
 import co.com.bodytech.entrenamiento.entrenador.values.CantidadDeClientes;
@@ -25,6 +26,7 @@ import java.util.List;
 public class Entrenador extends AggregateEvent<EntrenadorId> {
 
     protected CentroAcondicionamientoId centroAcondicionamientoId;
+    protected EntrenadorId entrenadorId;
     protected EntrenadorZonaId entrenadorZonaId;
     protected EntrenadorZona entrenadorZona;
     protected EntrenadorGeneralId entrenadorGeneralId;
@@ -93,7 +95,17 @@ public class Entrenador extends AggregateEvent<EntrenadorId> {
         appendChange(new EntrenadorZonaActualizado(entrenadorZonaId, telefono, email, nombreCompleto)).apply();
     }
 
-    public void eliminarEntrenadorZona(){
-        appendChange(new EntrenadorZonaEliminado()).apply();
+    public void actualizarEntrenadorZonaAGeneral(EntrenadorZonaId entrenadorZonaId, Telefono telefono,
+                                                    Email email, NombreCompleto nombreCompleto){
+
+        var entrenadorGeneralId = new EntrenadorGeneralId();
+
+        appendChange(new EntrenadorZonaCambiadoAGeneral(entrenadorId, entrenadorZonaId,
+                entrenadorGeneralId, telefono, email, nombreCompleto)).apply();
+    }
+
+    public void eliminarEntrenadorZona(EntrenadorZonaId entrenadorZonaId){
+
+        appendChange(new EntrenadorZonaEliminado(entrenadorZonaId, entrenadorId)).apply();
     }
 }

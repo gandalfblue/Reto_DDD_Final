@@ -8,6 +8,9 @@ public class MaquinaId extends Identity {
         super(id);
     }
 
+    public MaquinaId() {
+    }
+
     public static MaquinaId of(String id) {
         return new MaquinaId(id);
     }

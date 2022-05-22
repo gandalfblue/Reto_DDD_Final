@@ -1,9 +1,7 @@
 package co.com.bodytech.entrenamiento.cliente;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
-import co.com.bodytech.entrenamiento.cliente.values.CuponDeDescuento;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
-import co.com.bodytech.entrenamiento.cliente.values.HorasSemanalesDeEntrenamiento;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
@@ -19,21 +17,18 @@ public class ClienteVIP extends AggregateEvent<ClienteVIPId> {
     protected Telefono telefono;
     protected Email email;
     protected NombreCompleto nombreCompleto;
-    protected HorasSemanalesDeEntrenamiento horasSemanalesDeEntrenamiento;
-    protected CuponDeDescuento cuponDeDescuento;
 
     public ClienteVIP(ClienteVIPId clienteVIPId) {
         super(clienteVIPId);
     }
 
-    public ClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono, Email email, NombreCompleto nombreCompleto,
-                      HorasSemanalesDeEntrenamiento horasSemanalesDeEntrenamiento) {
+    public ClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono,
+                                    Email email, NombreCompleto nombreCompleto) {
 
         super(clienteVIPId);
         this.telefono = telefono;
         this.email = email;
         this.nombreCompleto = nombreCompleto;
-        this.horasSemanalesDeEntrenamiento = horasSemanalesDeEntrenamiento;
     }
 
     public ClienteVIP(ClienteVIPId clienteVIPId, TipoDeCliente tipoDeCliente, NombreCompleto nombreCompleto) {

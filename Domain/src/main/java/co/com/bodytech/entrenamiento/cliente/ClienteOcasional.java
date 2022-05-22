@@ -13,7 +13,7 @@ import co.com.sofka.domain.generic.AggregateEvent;
  */
 public class ClienteOcasional extends AggregateEvent<ClienteOcasionalId> {
 
-   protected TipoDeCliente tipoDeCliente;
+    protected TipoDeCliente tipoDeCliente;
     protected ClienteOcasionalId clienteOcasionalId;
     protected CentroAcondicionamientoId centroAcondicionamientoId;
     protected Telefono telefono;

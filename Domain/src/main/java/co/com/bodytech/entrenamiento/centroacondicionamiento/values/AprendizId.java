@@ -8,6 +8,9 @@ public class AprendizId extends Identity {
         super(id);
     }
 
+    public AprendizId() {
+    }
+
     public static AprendizId of(String id) {
         return new AprendizId(id);
     }

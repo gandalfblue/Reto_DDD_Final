@@ -11,6 +11,9 @@ public class ClienteFrecuenteId extends Identity {
         super(id);
     }
 
+    public ClienteFrecuenteId() {
+    }
+
     public static ClienteFrecuenteId of(String id) {
         return new ClienteFrecuenteId(id);
     }

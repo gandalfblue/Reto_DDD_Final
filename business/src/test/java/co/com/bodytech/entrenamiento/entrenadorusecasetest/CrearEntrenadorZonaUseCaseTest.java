@@ -1,10 +1,11 @@
-package co.com.bodytech.entrenamiento.entrenadorusecase;
+package co.com.bodytech.entrenamiento.entrenadorusecasetest;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.entrenador.commands.CrearEntrenadorZona;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorZonaCreado;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorZonaId;
+import co.com.bodytech.entrenamiento.entrenadorusecase.CrearEntrenadorZonaUseCase;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.support.RequestCommand;

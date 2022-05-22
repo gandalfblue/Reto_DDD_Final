@@ -8,6 +8,8 @@ public class ZonaId extends Identity {
         super(id);
     }
 
+    public ZonaId() { }
+
     public static ZonaId of(String id) {
         return new ZonaId(id);
     }

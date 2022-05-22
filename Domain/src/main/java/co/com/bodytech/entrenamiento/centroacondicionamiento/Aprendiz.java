@@ -25,6 +25,14 @@ public class Aprendiz extends AggregateEvent<AprendizId> {
         this.nombreCompleto = nombreCompleto;
     }
 
+    public Aprendiz(AprendizId aprendizId, Telefono telefono,
+                                                        NombreCompleto nombreCompleto) {
+        super(aprendizId);
+        this.aprendizId = aprendizId;
+        this.telefono = telefono;
+        this.nombreCompleto = nombreCompleto;
+    }
+
     public void actualizarAprendiz(AprendizId aprendizId, Telefono telefono, Email email, NombreCompleto nombreCompleto){
 
         this.aprendizId = AprendizId.of(aprendizId.value());

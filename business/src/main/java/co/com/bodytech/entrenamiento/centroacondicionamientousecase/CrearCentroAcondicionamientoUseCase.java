@@ -1,82 +1,23 @@
 package co.com.bodytech.entrenamiento.centroacondicionamientousecase;
 
-import co.com.bodytech.entrenamiento.centroacondicionamiento.Aprendiz;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.Maquina;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.Zona;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.values.MaquinaId;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.values.ZonaId;
-import co.com.bodytech.entrenamiento.cliente.Cliente;
-import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
-import co.com.bodytech.entrenamiento.entrenador.Entrenador;
-import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorId;
-import co.com.sofka.domain.generic.Command;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.CentroAcondicionamiento;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.commands.CrearCentroAcondicionamiento;
+import co.com.sofka.business.generic.UseCase;
+import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.business.support.ResponseEvents;
 
-public class CrearCentroAcondicionamientoUseCase extends Command {
+public class CrearCentroAcondicionamientoUseCase extends UseCase<RequestCommand<CrearCentroAcondicionamiento>,
+        ResponseEvents> {
 
-    private final Cliente cliente;
-    private final ClienteId clienteId;
-    private final Entrenador entrenador;
-    private final EntrenadorId entrenadorId;
-    private final Zona zona;
-    private final ZonaId zonaId;
-    private final Maquina maquina;
-    private final MaquinaId maquinaId;
-    private final Aprendiz aprendiz;
-    private final AprendizId aprendizId;
+    @Override
+    public void executeUseCase(RequestCommand<CrearCentroAcondicionamiento>
+                                           crearCentroAcondicionamientoRequestCommand) {
 
-    public CrearCentroAcondicionamientoUseCase(Cliente cliente, ClienteId clienteId, Entrenador entrenador,
-                                               EntrenadorId entrenadorId, Zona zona, ZonaId zonaId, Maquina maquina, MaquinaId maquinaId, Aprendiz aprendiz, AprendizId aprendizId) {
+        var command =crearCentroAcondicionamientoRequestCommand.getCommand();
 
-        this.cliente = cliente;
-        this.clienteId = clienteId;
-        this.entrenador = entrenador;
-        this.entrenadorId = entrenadorId;
-        this.zona = zona;
-        this.zonaId = zonaId;
-        this.maquina = maquina;
-        this.maquinaId = maquinaId;
-        this.aprendiz = aprendiz;
-        this.aprendizId = aprendizId;
-    }
+        var centroAcondicionamiento = new CentroAcondicionamiento(command.getCentroAcondicionamientoId(),
+                command.getNombreCompleto());
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public Entrenador getEntrenador() {
-        return entrenador;
-    }
-
-    public Zona getZona() {
-        return zona;
-    }
-
-    public Maquina getMaquina() {
-        return maquina;
-    }
-
-    public Aprendiz getAprendiz() {
-        return aprendiz;
-    }
-
-    public ClienteId getClienteId() {
-        return clienteId;
-    }
-
-    public EntrenadorId getEntrenadorId() {
-        return entrenadorId;
-    }
-
-    public ZonaId getZonaId() {
-        return zonaId;
-    }
-
-    public MaquinaId getMaquinaId() {
-        return maquinaId;
-    }
-
-    public AprendizId getAprendizId() {
-        return aprendizId;
+        emit().onResponse(new ResponseEvents(centroAcondicionamiento.getUncommittedChanges()));
     }
 }

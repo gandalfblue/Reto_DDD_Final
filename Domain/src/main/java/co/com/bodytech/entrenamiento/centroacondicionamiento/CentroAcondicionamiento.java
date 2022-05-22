@@ -1,17 +1,18 @@
 package co.com.bodytech.entrenamiento.centroacondicionamiento;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizActualizado;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizEliminado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.CentroAcondicionamientoCreado;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.events.MaquinaCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.TipoMaquinaActualizado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.TipoZonaActualizado;
+import co.com.bodytech.entrenamiento.centroacondicionamiento.events.ZonaCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.MaquinaId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.ZonaId;
-import co.com.bodytech.entrenamiento.cliente.Cliente;
 import co.com.bodytech.entrenamiento.cliente.values.Email;
-import co.com.bodytech.entrenamiento.entrenador.Entrenador;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -28,6 +29,7 @@ public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamie
     protected MaquinaId maquinaId;
     protected AprendizId aprendizId;
     protected Aprendiz aprendiz;
+    protected NombreCompleto nombreCompleto;
 
     public CentroAcondicionamiento(CentroAcondicionamientoId centroAcondicionamientoId) {
         super(centroAcondicionamientoId);
@@ -35,10 +37,38 @@ public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamie
     }
 
     public CentroAcondicionamiento(CentroAcondicionamientoId centroAcondicionamientoId,
-           Cliente cliente, Entrenador entrenador, Zona zona, Maquina maquina, Aprendiz aprendiz) {
-
+                                                                NombreCompleto nombreCompleto) {
         super(centroAcondicionamientoId);
-        appendChange(new CentroAcondicionamientoCreado(zona, zonaId, maquina, maquinaId, aprendiz, aprendizId)).apply();
+
+        var maquinaId = new MaquinaId();
+        var zonaId = new ZonaId();
+        var aprendizId = new AprendizId();
+
+        appendChange(new CentroAcondicionamientoCreado(zonaId, maquinaId, aprendizId, nombreCompleto)).apply();
+        subscribe(new CentroAcondicionamientoChange(this));
+    }
+
+    public void crearAprendiz(CentroAcondicionamientoId centroAcondicionamientoId,
+                              Telefono telefono, NombreCompleto nombreCompleto) {
+
+        var aprendizId = new AprendizId();
+        appendChange(new AprendizCreado(aprendizId, telefono, nombreCompleto)).apply();
+        subscribe(new CentroAcondicionamientoChange(this));
+    }
+
+    public void crearMaquina(CentroAcondicionamientoId centroAcondicionamientoId) {
+
+        var maquinaId = new MaquinaId();
+
+        appendChange(new MaquinaCreado(centroAcondicionamientoId, maquinaId)).apply();
+        subscribe(new CentroAcondicionamientoChange(this));
+    }
+
+    public void crearZona(CentroAcondicionamientoId centroAcondicionamientoId) {
+
+        var zonaId = new ZonaId();
+
+        appendChange(new ZonaCreado(centroAcondicionamientoId, zonaId)).apply();
         subscribe(new CentroAcondicionamientoChange(this));
     }
 

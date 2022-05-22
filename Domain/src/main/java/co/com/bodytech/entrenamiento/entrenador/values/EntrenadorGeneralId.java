@@ -8,6 +8,9 @@ public class EntrenadorGeneralId extends Identity {
         super(id);
     }
 
+    public EntrenadorGeneralId() {
+    }
+
     public static EntrenadorGeneralId of(String id) {
         return new EntrenadorGeneralId(id);
     }
