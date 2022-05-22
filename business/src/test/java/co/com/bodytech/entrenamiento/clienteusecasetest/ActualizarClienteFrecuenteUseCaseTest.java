@@ -6,7 +6,7 @@ import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteActualizado;
 import co.com.bodytech.entrenamiento.cliente.events.ClienteFrecuenteCreado;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.clienteusecase.ActualizarClienteFrecuenteUseCase;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;

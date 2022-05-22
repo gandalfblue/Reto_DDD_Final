@@ -6,7 +6,7 @@ import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizCrea
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.centroacondicionamientousecase.ActualizarAprendizUseCase;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.business.generic.UseCaseHandler;

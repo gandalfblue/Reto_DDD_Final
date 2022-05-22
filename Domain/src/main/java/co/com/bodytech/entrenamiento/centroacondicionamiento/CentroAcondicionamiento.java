@@ -2,7 +2,6 @@ package co.com.bodytech.entrenamiento.centroacondicionamiento;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizActualizado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizCreado;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizEliminado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.CentroAcondicionamientoCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.MaquinaCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.TipoMaquinaActualizado;
@@ -12,7 +11,7 @@ import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.MaquinaId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.ZonaId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -94,10 +93,6 @@ public class CentroAcondicionamiento extends AggregateEvent<CentroAcondicionamie
                                     Email email, NombreCompleto nombreCompleto){
 
         appendChange(new AprendizActualizado(aprendizId, telefono, email, nombreCompleto)).apply();
-    }
-
-    public void eliminarAprendiz(){
-        appendChange(new AprendizEliminado()).apply();
     }
 
     public CentroAcondicionamientoId centroAcondicionamientoId() {

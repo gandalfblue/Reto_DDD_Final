@@ -1,7 +1,6 @@
 package co.com.bodytech.entrenamiento.centroacondicionamiento;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizCreado;
-import co.com.bodytech.entrenamiento.centroacondicionamiento.events.AprendizEliminado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.CentroAcondicionamientoCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.MaquinaCreado;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.events.TipoMaquinaActualizado;
@@ -60,12 +59,6 @@ public class CentroAcondicionamientoChange extends EventChange {
 
             centroAcondicionamiento.zona.actualizarZona(zonaId,
                                                 new TipoDeZona(TipoDeZona.Tipo.Zona_Cardio));
-        });
-
-        apply((AprendizEliminado evento) ->{
-
-            centroAcondicionamiento.aprendiz = null;
-
         });
     }
 }

@@ -1,8 +1,7 @@
 package co.com.bodytech.entrenamiento.cliente;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
-import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
@@ -14,9 +13,7 @@ import co.com.sofka.domain.generic.AggregateEvent;
 public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
 
     protected ClienteFrecuenteId clienteFrecuenteId;
-    protected ClienteOcasionalId clienteOcasionalId;
     protected Telefono telefono;
-
     protected TipoDeCliente tipoDeCliente;
     protected Email email;
     protected NombreCompleto nombreCompleto;
@@ -40,7 +37,6 @@ public class ClienteFrecuente extends AggregateEvent<ClienteFrecuenteId> {
         super(clienteFrecuenteId);
         this.tipoDeCliente = tipoDeCliente;
         this.nombreCompleto = nombreCompleto;
-
     }
 
     public void actualizarClienteFrecuente(ClienteFrecuenteId clienteFrecuenteId, Telefono telefono,

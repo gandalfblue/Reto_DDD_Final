@@ -1,7 +1,7 @@
 package co.com.bodytech.entrenamiento.entrenador;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralActualizado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorGeneralCreado;
 import co.com.bodytech.entrenamiento.entrenador.events.EntrenadorPersonalizadoActualizado;

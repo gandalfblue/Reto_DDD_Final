@@ -2,7 +2,7 @@ package co.com.bodytech.entrenamiento.centroacondicionamiento.commands;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.AprendizId;
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.Command;

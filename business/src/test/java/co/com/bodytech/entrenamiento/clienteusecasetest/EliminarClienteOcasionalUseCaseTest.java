@@ -7,7 +7,7 @@ import co.com.bodytech.entrenamiento.cliente.events.MembresiaClienteOcasionalAct
 import co.com.bodytech.entrenamiento.cliente.values.ClienteFrecuenteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.clienteusecase.EliminarClienteOcasionalUseCase;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;

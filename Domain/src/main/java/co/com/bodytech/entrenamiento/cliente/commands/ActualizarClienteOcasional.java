@@ -2,7 +2,7 @@ package co.com.bodytech.entrenamiento.cliente.commands;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
 import co.com.sofka.domain.generic.Command;

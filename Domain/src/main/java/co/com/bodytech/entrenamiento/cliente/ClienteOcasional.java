@@ -2,7 +2,7 @@ package co.com.bodytech.entrenamiento.cliente;
 
 import co.com.bodytech.entrenamiento.centroacondicionamiento.values.CentroAcondicionamientoId;
 import co.com.bodytech.entrenamiento.cliente.values.ClienteOcasionalId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
@@ -24,21 +24,14 @@ public class ClienteOcasional extends AggregateEvent<ClienteOcasionalId> {
         super(clienteOcasionalId);
     }
 
-    public ClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,
-                            Email email, NombreCompleto nombreCompleto) {
-
-        super(clienteOcasionalId);
-        this.telefono = telefono;
-        this.email = email;
-        this.nombreCompleto = nombreCompleto;
-    }
-
     public ClienteOcasional(CentroAcondicionamientoId centroAcondicionamientoId,
             ClienteOcasionalId clienteOcasionalId, TipoDeCliente tipoDeCliente, NombreCompleto nombreCompleto) {
         super(clienteOcasionalId);
         this.tipoDeCliente = tipoDeCliente;
         this.nombreCompleto = nombreCompleto;
         this.centroAcondicionamientoId = centroAcondicionamientoId;
+        this.telefono = new Telefono("123456");
+        this.email = new Email("afl@sena.edu.co");
     }
 
     public void actualizarClienteOcasional(ClienteOcasionalId clienteOcasionalId, Telefono telefono,

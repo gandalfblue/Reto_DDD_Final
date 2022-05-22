@@ -1,4 +1,4 @@
-package co.com.bodytech.entrenamiento.cliente.values;
+package co.com.bodytech.entrenamiento.genericos;
 
 import co.com.sofka.domain.generic.ValueObject;
 

@@ -1,6 +1,6 @@
 package co.com.bodytech.entrenamiento.entrenador;
 
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.entrenador.values.EntrenadorGeneralId;
 import co.com.bodytech.entrenamiento.entrenador.values.TipoDeEntrenador;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;

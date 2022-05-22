@@ -1,7 +1,7 @@
 package co.com.bodytech.entrenamiento.cliente;
 
 import co.com.bodytech.entrenamiento.cliente.values.ClienteVIPId;
-import co.com.bodytech.entrenamiento.cliente.values.Email;
+import co.com.bodytech.entrenamiento.genericos.Email;
 import co.com.bodytech.entrenamiento.cliente.values.TipoDeCliente;
 import co.com.bodytech.entrenamiento.genericos.NombreCompleto;
 import co.com.bodytech.entrenamiento.genericos.Telefono;
@@ -22,19 +22,12 @@ public class ClienteVIP extends AggregateEvent<ClienteVIPId> {
         super(clienteVIPId);
     }
 
-    public ClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono,
-                                    Email email, NombreCompleto nombreCompleto) {
-
-        super(clienteVIPId);
-        this.telefono = telefono;
-        this.email = email;
-        this.nombreCompleto = nombreCompleto;
-    }
-
     public ClienteVIP(ClienteVIPId clienteVIPId, TipoDeCliente tipoDeCliente, NombreCompleto nombreCompleto) {
         super(clienteVIPId);
         this.tipoDeCliente = tipoDeCliente;
         this.nombreCompleto = nombreCompleto;
+        this.telefono = new Telefono("123456");
+        this.email = new Email("afl@sena.edu.co");
     }
 
     public void actualizarClienteClienteVIP(ClienteVIPId clienteVIPId, Telefono telefono,
